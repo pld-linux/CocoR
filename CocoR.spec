@@ -6,6 +6,7 @@ Release:	1
 Group:		Development/Tools
 License:	Unknown
 Source0:	ftp://cs.ru.ac.za/pub/coco/cocorc15.tgz
+# Source0-md5:	843dcb81ac549931f5437f143a15349c
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
