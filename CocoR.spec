@@ -4,9 +4,6 @@ Name:		CocoR
 Version:	1.50
 Release:	1
 Group:		Development/Tools
-Group(de):	Entwicklung/Werkzeuge
-Group(fr):	Development/Outils
-Group(pl):	Programowanie/Narzêdzia
 License:	Unknown
 Source0:	ftp://cs.ru.ac.za/pub/coco/cocorc15.tgz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
