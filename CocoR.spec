@@ -25,17 +25,17 @@ export CRFRAMES=`pwd`/frames
 uudecode dos2unix.uue
 chmod +x dos2unix.sh
 ./dos2unix.sh unix.mk
-%{__make} -f unix.mk dos2unix CFLAGS="$RPM_OPT_FLAGS -I../cplus2"
-%{__make} -f unix.mk linux CFLAGS="$RPM_OPT_FLAGS -I../cplus2"
+%{__make} -f unix.mk dos2unix CFLAGS="%{rpmcflags} -I../cplus2"
+%{__make} -f unix.mk linux CFLAGS="%{rpmcflags} -I../cplus2"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/coco/frames/cplus2}
 
-install -s cocor $RPM_BUILD_ROOT%{_bindir}
+install cocor $RPM_BUILD_ROOT%{_bindir}
 
-cp frames/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/
-cp frames/cplus2/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/cplus2
+cp -f frames/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/
+cp -f frames/cplus2/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/cplus2
 
 install docs/cocor.1 $RPM_BUILD_ROOT%{_mandir}/man1/cocor.1
 
