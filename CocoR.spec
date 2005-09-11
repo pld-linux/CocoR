@@ -32,7 +32,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/coco/frames/cp
 
 install cocor $RPM_BUILD_ROOT%{_bindir}
 
-cp -f frames/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/
+cp -f frames/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames
 cp -f frames/cplus2/*.frm $RPM_BUILD_ROOT%{_datadir}/coco/frames/cplus2
 
 install docs/cocor.1 $RPM_BUILD_ROOT%{_mandir}/man1/cocor.1
@@ -44,4 +44,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr (755,root,root) %{_bindir}/cocor
 %{_mandir}/man1/cocor.1*
+%dir %{_datadir}/coco
 %{_datadir}/coco/frames
