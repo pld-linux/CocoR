@@ -7,6 +7,7 @@ Group:		Development/Tools
 License:	unknown
 Source0:	ftp://cs.ru.ac.za/pub/coco/cocorc15.tgz
 # Source0-md5:	843dcb81ac549931f5437f143a15349c
+Patch0:		%{name}-compile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -17,14 +18,15 @@ Generator analizatorów leksykalnych i sk³adniowych Coco/R.
 
 %prep
 %setup -q -c
+%patch0 -p1
 
 %build
 export CRFRAMES=`pwd`/frames
 uudecode dos2unix.uue
 chmod +x dos2unix.sh
 ./dos2unix.sh unix.mk
-%{__make} -f unix.mk dos2unix CFLAGS="%{rpmcflags} -I../cplus2"
-%{__make} -f unix.mk linux CFLAGS="%{rpmcflags} -I../cplus2"
+%{__make} -f unix.mk dos2unix OPTFLAGS="%{rpmcflags}"
+%{__make} -f unix.mk linux OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
