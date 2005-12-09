@@ -1,0 +1,77 @@
+diff -ur CocoR-1.50/cplus2/unix.mk CocoR-1.50-compile/cplus2/unix.mk
+--- CocoR-1.50/cplus2/unix.mk	1999-11-21 07:27:41.000000000 +0100
++++ CocoR-1.50-compile/cplus2/unix.mk	2005-12-10 00:03:19.000000000 +0100
+@@ -11,10 +11,10 @@
+ 
+ #CC sets the name of the compiler to use (cc, gcc, etc)
+ #You will have to change this to suit your system
+-#CC             = g++
++CC             = g++
+ 
+ AR              = ar
+-CFLAGS          = -g
++CFLAGS          = $(OPTFLAGS)
+ DOS2UNIX        = ../dos2unix.sh
+ 
+ %.o: %.cpp
+diff -ur CocoR-1.50/sources/unix.mk CocoR-1.50-compile/sources/unix.mk
+--- CocoR-1.50/sources/unix.mk	2000-04-29 20:52:54.000000000 +0200
++++ CocoR-1.50-compile/sources/unix.mk	2005-12-10 00:02:57.000000000 +0100
+@@ -12,11 +12,11 @@
+ # add -DDebug if required
+ # CFLAGS          = -O -DDebug
+ 
+-CFLAGS          = -O
++CFLAGS          = $(OPTFLAGS)
+ 
+ #CC sets the name of the compiler to use (cc, gcc, etc)
+ #You will have to change this to suit your system
+-#CC             = cc
++CC             = gcc
+ 
+ DOS2UNIX        = ../dos2unix.sh
+ 
+diff -ur CocoR-1.50/taste/unix.mk CocoR-1.50-compile/taste/unix.mk
+--- CocoR-1.50/taste/unix.mk	1999-11-21 07:34:03.000000000 +0100
++++ CocoR-1.50-compile/taste/unix.mk	2005-12-10 00:02:42.000000000 +0100
+@@ -9,11 +9,11 @@
+ #CFLAGS for debugging  (gdb)
+ #CFLAGS         = -ggdb
+ #CFLAGS for production
+-CFLAGS          = -O
++CFLAGS          = $(OPTFLAGS)
+ 
+ #CC sets the name of the compiler to use (cc, gcc, etc)
+ #You will have to change this to suit your system
+-#CC             = cc
++CC             = gcc
+ 
+ COCOR           = ../cocor
+ DOS2UNIX        = ../dos2unix.sh
+diff -ur CocoR-1.50/taste_cp/unix.mk CocoR-1.50-compile/taste_cp/unix.mk
+--- CocoR-1.50/taste_cp/unix.mk	1999-11-21 07:34:48.000000000 +0100
++++ CocoR-1.50-compile/taste_cp/unix.mk	2005-12-10 00:02:23.000000000 +0100
+@@ -8,9 +8,9 @@
+ 
+ #CC sets the name of the compiler to use (cc, gcc, etc)
+ #You will have to change this to suit your system
+-#CC             = g++
++CC             = g++
+ 
+-CFLAGS          = -g -I../cplus2
++CFLAGS          = $(OPTFLAGS) -I../cplus2
+ COCOR           = ../cocor
+ DOS2UNIX        = ../dos2unix.sh
+ LIB             = ../cplus2/cr_lib.a
+diff -ur CocoR-1.50/unix.mk CocoR-1.50-compile/unix.mk
+--- CocoR-1.50/unix.mk	1998-04-15 17:48:11.000000000 +0200
++++ CocoR-1.50-compile/unix.mk	2005-12-10 00:09:26.427092250 +0100
+@@ -50,7 +50,7 @@
+ 		do (cd $$i; $(MAKE) -f unix.mk)\
+ 		done
+ 
+-linux:		;$(MAKE) -f unix.mk CC=cc all1
++linux:		;$(MAKE) -f unix.mk all1
+ solaris:	;$(MAKE) -f unix.mk CC=gcc all1
+ 
+ dos2unix:
