@@ -25,8 +25,14 @@ export CRFRAMES=`pwd`/frames
 uudecode dos2unix.uue
 chmod +x dos2unix.sh
 ./dos2unix.sh unix.mk
-%{__make} -f unix.mk dos2unix OPTFLAGS="%{rpmcflags}"
-%{__make} -f unix.mk linux OPTFLAGS="%{rpmcflags}"
+%{__make} -f unix.mk dos2unix \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	OPTFLAGS="%{rpmcflags}"
+%{__make} -f unix.mk linux \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
