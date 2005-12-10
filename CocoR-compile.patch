@@ -1,12 +1,12 @@
-diff -ur CocoR-1.50/cplus2/unix.mk CocoR-1.50-compile/cplus2/unix.mk
+diff -ur CocoR-1.50/cplus2/unix.mk n.CocoR-1.50/cplus2/unix.mk
 --- CocoR-1.50/cplus2/unix.mk	1999-11-21 07:27:41.000000000 +0100
-+++ CocoR-1.50-compile/cplus2/unix.mk	2005-12-10 00:03:19.000000000 +0100
-@@ -11,10 +11,10 @@
++++ n.CocoR-1.50/cplus2/unix.mk	2005-12-10 15:35:59.000000000 +0100
+@@ -11,17 +11,17 @@
  
  #CC sets the name of the compiler to use (cc, gcc, etc)
  #You will have to change this to suit your system
 -#CC             = g++
-+CC             = g++
++#CXX             = g++
  
  AR              = ar
 -CFLAGS          = -g
@@ -14,9 +14,27 @@ diff -ur CocoR-1.50/cplus2/unix.mk CocoR-1.50-compile/cplus2/unix.mk
  DOS2UNIX        = ../dos2unix.sh
  
  %.o: %.cpp
-diff -ur CocoR-1.50/sources/unix.mk CocoR-1.50-compile/sources/unix.mk
+-		$(CC) -c $(CFLAGS) $< -o $@
++		$(CXX) -c $(CFLAGS) $< -o $@
+ 
+ %.o: %.cxx
+-		$(CC) -c $(CFLAGS) $< -o $@
++		$(CXX) -c $(CFLAGS) $< -o $@
+ 
+ all:            cr_lib.a
+ 
+@@ -29,7 +29,7 @@
+ 		sh -c "$(DOS2UNIX) '*.c?? *.h?? *.mk'"
+ 
+ cr_lib.a:
+-		$(CC) $(CFLAGS) -c cr_abs.c?? cr_error.c?? \
++		$(CXX) $(CFLAGS) -c cr_abs.c?? cr_error.c?? \
+                                    cr_scan.c?? cr_parse.c??
+ 		$(AR) -rc cr_lib.a cr_abs.o cr_error.o \
+                                    cr_scan.o cr_parse.o
+diff -ur CocoR-1.50/sources/unix.mk n.CocoR-1.50/sources/unix.mk
 --- CocoR-1.50/sources/unix.mk	2000-04-29 20:52:54.000000000 +0200
-+++ CocoR-1.50-compile/sources/unix.mk	2005-12-10 00:02:57.000000000 +0100
++++ n.CocoR-1.50/sources/unix.mk	2005-12-10 10:41:26.000000000 +0100
 @@ -12,11 +12,11 @@
  # add -DDebug if required
  # CFLAGS          = -O -DDebug
@@ -30,10 +48,10 @@ diff -ur CocoR-1.50/sources/unix.mk CocoR-1.50-compile/sources/unix.mk
 +CC             = gcc
  
  DOS2UNIX        = ../dos2unix.sh
- 
-diff -ur CocoR-1.50/taste/unix.mk CocoR-1.50-compile/taste/unix.mk
+
+diff -ur CocoR-1.50/taste/unix.mk n.CocoR-1.50/taste/unix.mk
 --- CocoR-1.50/taste/unix.mk	1999-11-21 07:34:03.000000000 +0100
-+++ CocoR-1.50-compile/taste/unix.mk	2005-12-10 00:02:42.000000000 +0100
++++ n.CocoR-1.50/taste/unix.mk	2005-12-10 10:41:26.000000000 +0100
 @@ -9,11 +9,11 @@
  #CFLAGS for debugging  (gdb)
  #CFLAGS         = -ggdb
@@ -48,24 +66,70 @@ diff -ur CocoR-1.50/taste/unix.mk CocoR-1.50-compile/taste/unix.mk
  
  COCOR           = ../cocor
  DOS2UNIX        = ../dos2unix.sh
-diff -ur CocoR-1.50/taste_cp/unix.mk CocoR-1.50-compile/taste_cp/unix.mk
+diff -ur CocoR-1.50/taste_cp/unix.mk n.CocoR-1.50/taste_cp/unix.mk
 --- CocoR-1.50/taste_cp/unix.mk	1999-11-21 07:34:48.000000000 +0100
-+++ CocoR-1.50-compile/taste_cp/unix.mk	2005-12-10 00:02:23.000000000 +0100
-@@ -8,9 +8,9 @@
++++ n.CocoR-1.50/taste_cp/unix.mk	2005-12-10 15:36:49.000000000 +0100
+@@ -8,18 +8,18 @@
  
  #CC sets the name of the compiler to use (cc, gcc, etc)
  #You will have to change this to suit your system
 -#CC             = g++
-+CC             = g++
++#CXX             = g++
  
 -CFLAGS          = -g -I../cplus2
 +CFLAGS          = $(OPTFLAGS) -I../cplus2
  COCOR           = ../cocor
  DOS2UNIX        = ../dos2unix.sh
  LIB             = ../cplus2/cr_lib.a
-diff -ur CocoR-1.50/unix.mk CocoR-1.50-compile/unix.mk
+ 
+ %.o: %.cpp
+-		$(CC) -c $(CFLAGS) $< -o $@
++		$(CXX) -c $(CFLAGS) $< -o $@
+ 
+ %.o: %.cxx
+-		$(CC) -c $(CFLAGS) $< -o $@
++		$(CXX) -c $(CFLAGS) $< -o $@
+ 
+ all:            taste pretty xref
+ 
+@@ -35,28 +35,28 @@
+ 		do (mv $$i.cpp $$i.cxx); done  
+ 
+ taste:          tastep.o  taste.o tc.o tl.o
+-		$(CC) $(CFLAGS) -otaste taste.o tl.o tc.o\
++		$(CXX) $(CFLAGS) -otaste taste.o tl.o tc.o\
+                                         tastes.o tastep.o $(LIB)
+ 
+ tastep.o:       taste.atg
+ 		$(COCOR) taste.atg
+-		$(CC) $(CFLAGS) -c taste.c?? tastep.c?? tastes.c??
++		$(CXX) $(CFLAGS) -c taste.c?? tastep.c?? tastes.c??
+ 
+ pretty:         prettyp.o pretty.o prettypr.o 
+-		$(CC) $(CFLAGS) -opretty pretty.o prettypr.o \
++		$(CXX) $(CFLAGS) -opretty pretty.o prettypr.o \
+                                          prettys.o prettyp.o $(LIB)
+ 
+ prettyp.o:      pretty.atg
+ 		$(COCOR) pretty.atg
+-		$(CC) $(CFLAGS) -c pretty.c?? prettyp.c?? prettys.c??
++		$(CXX) $(CFLAGS) -c pretty.c?? prettyp.c?? prettys.c??
+ 
+ xref:           xrefp.o xref.o crossref.o 
+-		$(CC) $(CFLAGS) -oxref xref.o crossref.o \
++		$(CXX) $(CFLAGS) -oxref xref.o crossref.o \
+                                        xrefs.o xrefp.o $(LIB)
+ 
+ xrefp.o:        xref.atg
+ 		$(COCOR) xref.atg
+-		$(CC) $(CFLAGS) -c xref.c?? xrefp.c?? xrefs.c??
++		$(CXX) $(CFLAGS) -c xref.c?? xrefp.c?? xrefs.c??
+ 
+ clean:
+ 		set -i; \
+diff -ur CocoR-1.50/unix.mk n.CocoR-1.50/unix.mk
 --- CocoR-1.50/unix.mk	1998-04-15 17:48:11.000000000 +0200
-+++ CocoR-1.50-compile/unix.mk	2005-12-10 00:09:26.427092250 +0100
++++ n.CocoR-1.50/unix.mk	2005-12-10 10:41:24.000000000 +0100
 @@ -50,7 +50,7 @@
  		do (cd $$i; $(MAKE) -f unix.mk)\
  		done
@@ -74,4 +138,3 @@ diff -ur CocoR-1.50/unix.mk CocoR-1.50-compile/unix.mk
 +linux:		;$(MAKE) -f unix.mk all1
  solaris:	;$(MAKE) -f unix.mk CC=gcc all1
  
- dos2unix:
