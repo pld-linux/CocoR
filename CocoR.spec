@@ -1,5 +1,5 @@
 Summary:	Parser and lexer generator
-Summary(pl.UTF-8):   Generator analizatorów leksykalnych i składniowych
+Summary(pl.UTF-8):	Generator analizatorów leksykalnych i składniowych
 Name:		CocoR
 Version:	1.50
 Release:	1
