@@ -1,5 +1,5 @@
 Summary:	Parser and lexer generator
-Summary(pl):	Generator analizatorów leksykalnych i sk³adniowych
+Summary(pl.UTF-8):   Generator analizatorÃ³w leksykalnych i skÅ‚adniowych
 Name:		CocoR
 Version:	1.50
 Release:	1
@@ -13,8 +13,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Coco/R generator.
 
-%description -l pl
-Generator analizatorów leksykalnych i sk³adniowych Coco/R.
+%description -l pl.UTF-8
+Generator analizatorÃ³w leksykalnych i skÅ‚adniowych Coco/R.
 
 %prep
 %setup -q -c
