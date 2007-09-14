@@ -1,12 +1,13 @@
 Summary:	Parser and lexer generator
 Summary(pl.UTF-8):	Generator analizatorów leksykalnych i składniowych
 Name:		CocoR
-Version:	1.50
+Version:	1.17
 Release:	1
+Epoch:		1
 Group:		Development/Tools
-License:	unknown
-Source0:	ftp://cs.ru.ac.za/pub/coco/cocorc15.tgz
-# Source0-md5:	843dcb81ac549931f5437f143a15349c
+License:	Free
+Source0:	http://www.scifac.ru.ac.za/coco/cocorc17.tgz
+# Source0-md5:	1e2ae1d70ae90f06992e3776cc568a10
 Patch0:		%{name}-compile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
