@@ -19,7 +19,7 @@ Generator analizatorów leksykalnych i składniowych Coco/R.
 
 %prep
 %setup -q -c
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 export CRFRAMES=`pwd`/frames
