@@ -2,13 +2,14 @@ Summary:	Parser and lexer generator
 Summary(pl.UTF-8):	Generator analizatorów leksykalnych i składniowych
 Name:		CocoR
 Version:	1.17
-Release:	2
+Release:	3
 Epoch:		1
 Group:		Development/Tools
 License:	Free
 Source0:	http://www.scifac.ru.ac.za/coco/cocorc17.tgz
 # Source0-md5:	1e2ae1d70ae90f06992e3776cc568a10
 Patch0:		%{name}-compile.patch
+Patch1:		%{name}-gcc14.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -19,18 +20,16 @@ Generator analizatorów leksykalnych i składniowych Coco/R.
 
 %prep
 %setup -q -c
-%patch -P0 -p1
-
-%build
-export CRFRAMES=`pwd`/frames
 uudecode dos2unix.uue
 chmod +x dos2unix.sh
 ./dos2unix.sh unix.mk
-%{__make} -f unix.mk dos2unix \
-	CC="%{__cc}" \
-	CXX="%{__cxx}" \
-	OPTFLAGS="%{rpmcflags}"
-%{__make} -f unix.mk linux \
+%{__make} -j1 -f unix.mk dos2unix
+%patch -P0 -p1
+%patch -P1 -p1
+
+%build
+export CRFRAMES=`pwd`/frames
+%{__make} -j1 -f unix.mk linux \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
 	OPTFLAGS="%{rpmcflags}"
