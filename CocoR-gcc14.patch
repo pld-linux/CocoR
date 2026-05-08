@@ -1,0 +1,22 @@
+--- a/taste/tc.c
++++ b/taste/tc.c
+@@ -23,7 +23,7 @@
+ static int top;
+ static int base;
+ 
+-extern SemError (int n);
++extern void SemError (int n);
+ 
+ void Emit (int op)
+ { 
+--- a/taste/tl.c
++++ b/taste/tl.c
+@@ -18,7 +18,7 @@
+ 
+ Object topScope = NULL;  /* topmost procedure scope */
+ 
+-extern SemError (int n);
++extern void SemError (int n);
+ 
+ void EnterScope(void)
+ {
