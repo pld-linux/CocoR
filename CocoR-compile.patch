@@ -1,6 +1,6 @@
-diff -ur CocoR-1.50/cplus2/unix.mk n.CocoR-1.50/cplus2/unix.mk
---- CocoR-1.50/cplus2/unix.mk	1999-11-21 07:27:41.000000000 +0100
-+++ n.CocoR-1.50/cplus2/unix.mk	2005-12-10 15:35:59.000000000 +0100
+diff -uNr CocoR-1.17.orig/cplus2/unix.mk CocoR-1.17/cplus2/unix.mk
+--- CocoR-1.17.orig/cplus2/unix.mk	2026-03-21 16:44:57.566987134 +0100
++++ CocoR-1.17/cplus2/unix.mk	2026-03-21 16:44:57.581891875 +0100
 @@ -11,17 +11,17 @@
  
  #CC sets the name of the compiler to use (cc, gcc, etc)
@@ -32,12 +32,15 @@ diff -ur CocoR-1.50/cplus2/unix.mk n.CocoR-1.50/cplus2/unix.mk
                                     cr_scan.c?? cr_parse.c??
  		$(AR) -rc cr_lib.a cr_abs.o cr_error.o \
                                     cr_scan.o cr_parse.o
-diff -ur CocoR-1.50/sources/unix.mk n.CocoR-1.50/sources/unix.mk
---- CocoR-1.50/sources/unix.mk	2000-04-29 20:52:54.000000000 +0200
-+++ n.CocoR-1.50/sources/unix.mk	2005-12-10 10:41:26.000000000 +0100
-@@ -12,11 +12,11 @@
+diff -uNr CocoR-1.17.orig/sources/unix.mk CocoR-1.17/sources/unix.mk
+--- CocoR-1.17.orig/sources/unix.mk	2026-03-21 16:44:57.563178409 +0100
++++ CocoR-1.17/sources/unix.mk	2026-03-21 16:44:57.587683923 +0100
+@@ -10,13 +10,13 @@
+ # CFLAGS
+ #	-O	optimization
  # add -DDebug if required
- # CFLAGS          = -O -DDebug
+-# CFLAGS          = -O -DDebug
++# CFLAGS          = $(OPTFLAGS) -DDebug
  
 -CFLAGS          = -O
 +CFLAGS          = $(OPTFLAGS)
@@ -48,10 +51,10 @@ diff -ur CocoR-1.50/sources/unix.mk n.CocoR-1.50/sources/unix.mk
 +CC             = gcc
  
  DOS2UNIX        = ../dos2unix.sh
-
-diff -ur CocoR-1.50/taste/unix.mk n.CocoR-1.50/taste/unix.mk
---- CocoR-1.50/taste/unix.mk	1999-11-21 07:34:03.000000000 +0100
-+++ n.CocoR-1.50/taste/unix.mk	2005-12-10 10:41:26.000000000 +0100
+ 
+diff -uNr CocoR-1.17.orig/taste/unix.mk CocoR-1.17/taste/unix.mk
+--- CocoR-1.17.orig/taste/unix.mk	2026-03-21 16:44:57.566049046 +0100
++++ CocoR-1.17/taste/unix.mk	2026-03-21 16:44:57.587839644 +0100
 @@ -9,11 +9,11 @@
  #CFLAGS for debugging  (gdb)
  #CFLAGS         = -ggdb
@@ -66,9 +69,9 @@ diff -ur CocoR-1.50/taste/unix.mk n.CocoR-1.50/taste/unix.mk
  
  COCOR           = ../cocor
  DOS2UNIX        = ../dos2unix.sh
-diff -ur CocoR-1.50/taste_cp/unix.mk n.CocoR-1.50/taste_cp/unix.mk
---- CocoR-1.50/taste_cp/unix.mk	1999-11-21 07:34:48.000000000 +0100
-+++ n.CocoR-1.50/taste_cp/unix.mk	2005-12-10 15:36:49.000000000 +0100
+diff -uNr CocoR-1.17.orig/taste_cp/unix.mk CocoR-1.17/taste_cp/unix.mk
+--- CocoR-1.17.orig/taste_cp/unix.mk	2026-03-21 16:44:57.570702850 +0100
++++ CocoR-1.17/taste_cp/unix.mk	2026-03-21 16:44:57.583864840 +0100
 @@ -8,18 +8,18 @@
  
  #CC sets the name of the compiler to use (cc, gcc, etc)
@@ -127,9 +130,9 @@ diff -ur CocoR-1.50/taste_cp/unix.mk n.CocoR-1.50/taste_cp/unix.mk
  
  clean:
  		set -i; \
-diff -ur CocoR-1.50/unix.mk n.CocoR-1.50/unix.mk
---- CocoR-1.50/unix.mk	1998-04-15 17:48:11.000000000 +0200
-+++ n.CocoR-1.50/unix.mk	2005-12-10 10:41:24.000000000 +0100
+diff -uNr CocoR-1.17.orig/unix.mk CocoR-1.17/unix.mk
+--- CocoR-1.17.orig/unix.mk	2026-03-21 16:44:57.566049046 +0100
++++ CocoR-1.17/unix.mk	2026-03-21 16:44:57.589649115 +0100
 @@ -50,7 +50,7 @@
  		do (cd $$i; $(MAKE) -f unix.mk)\
  		done
@@ -138,3 +141,4 @@ diff -ur CocoR-1.50/unix.mk n.CocoR-1.50/unix.mk
 +linux:		;$(MAKE) -f unix.mk all1
  solaris:	;$(MAKE) -f unix.mk CC=gcc all1
  
+ dos2unix:
